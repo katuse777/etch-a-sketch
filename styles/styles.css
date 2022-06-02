@@ -3,3 +3,17 @@
     padding: 0;
     box-sizing: border-box;
 }
+
+#grid-container {
+    display: grid;
+    width: 80%;
+    height: 100vh;
+    margin: auto;
+    grid-template: repeat(16, 16fr)/ repeat(16, 16fr);
+    gap: 6px 6px;
+    background-color: aqua;
+}
+
+.grid-item {
+    background-color: blue;
+}
