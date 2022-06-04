@@ -1,21 +1,33 @@
-const grid = document.querySelector('#grid-container')
+const grid = document.getElementById('grid-container');
 
-for(let i = 1; i <= 256; i++) {
-    let div = document.createElement('div');  //This loop creates a div element and adds it to the  
-    grid.appendChild(div);                    //end of the grid-container and it does this 256 times
-                                              // which is 16*16
-}
+const button = document.querySelector('button');
+button.addEventListener('click', number => {
+    number = Number(prompt('How many Squares per side should the grid have?'));
+    if (isNaN(number)) {
+        return alert('Sorry, You have to insert a NUMBER');
+    } else {
+        grid.style.margin = 'auto';
+        grid.style.display = 'grid';
+        grid.style.height = '100vh';
+        grid.style.gridTemplate = `repeat(${number}, ${number}fr)/ repeat(${number}, ${number}fr)`;
+        grid.style.gap = '6px 6px';
 
-const divs = grid.querySelectorAll('div');    // this selects all 256 div's inside the grid div and
-                                              // returns a node-list(an Array like object)
-for(let i = 0; i < divs.length; i++) {
-    if(i%2 === 0) {
-        divs[i].addEventListener('mouseenter', () => {
-            divs[i].style.backgroundColor = 'yellow'; 
-        })
-    } else if(i%2 > 0) {
-        divs[i].addEventListener('mouseenter', () => {
-            divs[i].style.backgroundColor = 'blue';
-        })
-    } 
-}                                              
+        for (let i = 1; i <= number * number; i++) {
+            let div = document.createElement('div');
+            grid.appendChild(div);
+        }
+        const divs = grid.querySelectorAll('div');
+
+        for (let i = 0; i < divs.length; i++) {
+            if (i % 2 === 0) {
+                divs[i].addEventListener('mouseenter', () => {    // this loop iterates through the divs node list
+                    divs[i].style.backgroundColor = 'yellow';     // and adds an Event listener to ech item in the
+                })                                                //in the list 
+            } else if (i % 2 > 0) {
+                divs[i].addEventListener('mouseenter', () => {
+                    divs[i].style.backgroundColor = 'blue';
+                })
+            }
+        }
+    }
+})
